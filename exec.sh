@@ -60,10 +60,10 @@ else
 	if $DEBUG; then
 		cmd="$md $pg_r_dir && $ch_own $pg_r_dir && $ch_mod_rd && $md $pg_vr_dir && $ch_own $pg_vr_dir && $ch_mod_vrd && $start_pg && $validation"
 	else
-		cmd="$md $pg_r_dir $PRINT_NULL && $ch_own $pg_r_dir $PRINT_NULL && $ch_mod_rd $PRINT_NULL && $md $pg_vr_dir $PRINT_NULL && $ch_own $pg_vr_dir $PRINT_NULL && $ch_mod_vrd && $start_pg $PRINT_NULL"
+		cmd="$md $pg_r_dir $PRINT_NULL && $ch_own $pg_r_dir $PRINT_NULL && $ch_mod_rd $PRINT_NULL && $md $pg_vr_dir $PRINT_NULL && $ch_own $pg_vr_dir $PRINT_NULL && $ch_mod_vrd $PRINT_NULL && $start_pg $PRINT_NULL"
 	fi
         eval $cmd
-        sleep 5s
+        sleep 10s
     else
 	if $DEBUG; then
 	        echo "Unknown/Unsupported OS";
