@@ -36,7 +36,7 @@ if $DEBUG; then
 fi
 
 if [ "$os_id" = 'debian' ] ; then
-	debian_pg_start = "/usr/bin/pg_ctlcluster 9.6 main start"
+	debian_pg_start="/usr/bin/pg_ctlcluster 9.6 main start"
 	if $DEBUG; then
     		eval $debian_pg_start && echo "Started cluster!" || echo "Failed to start cluster!";
 	else
@@ -44,23 +44,23 @@ if [ "$os_id" = 'debian' ] ; then
 	fi
 else
     if [ "$os_id" = 'alpine' ] ; then
-	md = "mkdir -vp"
-	pg_r_dir = "/run/postgresql"
-	pg_vr_dir = "/var/run/postgresql"
-	pg_data = "/var/lib/postgresql/data"
-	pg_user = "postgres"
-	pg_cmd = "postgres &"
-	ch_own = "chown -R $pg_user:$pg_user"
-	ch_mod_rd = "chmod -v 775 $pg_r_dir"
-	ch_mod_vrd = "chmod -v 2777 $pg_vr_dir"
-	su_pg = "su - $pg_user -c"
-	exprt = "export PGDATA=$pg_data"
-	start_pg = "$su_pg \"$exprt && $pg_cmd\""
-	validation = "echo \"Started cluster!\" || echo \"Failed to start cluster!\""
+	md="mkdir -vp"
+	pg_r_dir="/run/postgresql"
+	pg_vr_dir="/var/run/postgresql"
+	pg_data="/var/lib/postgresql/data"
+	pg_user="postgres"
+	pg_cmd="postgres &"
+	ch_own="chown -R $pg_user:$pg_user"
+	ch_mod_rd="chmod -v 775 $pg_r_dir"
+	ch_mod_vrd="chmod -v 2777 $pg_vr_dir"
+	su_pg="su - $pg_user -c"
+	exprt="export PGDATA=$pg_data"
+	start_pg="$su_pg \"$exprt && $pg_cmd\""
+	validation="echo \"Started cluster!\" || echo \"Failed to start cluster!\""
 	if $DEBUG; then
-		cmd = "$md $pg_r_dir && $ch_own $pg_r_dir && $ch_mod_rd && $md $pg_vr_dir && $ch_own $pg_vr_dir && $ch_mod_vrd && $start_pg && $validation"
+		cmd="$md $pg_r_dir && $ch_own $pg_r_dir && $ch_mod_rd && $md $pg_vr_dir && $ch_own $pg_vr_dir && $ch_mod_vrd && $start_pg && $validation"
 	else
-		cmd = "$md $pg_r_dir $PRINT_NULL && $ch_own $pg_r_dir $PRINT_NULL && $ch_mod_rd $PRINT_NULL && $md $pg_vr_dir $PRINT_NULL && $ch_own $pg_vr_dir $PRINT_NULL && $ch_mod_vrd && $start_pg $PRINT_NULL"
+		cmd="$md $pg_r_dir $PRINT_NULL && $ch_own $pg_r_dir $PRINT_NULL && $ch_mod_rd $PRINT_NULL && $md $pg_vr_dir $PRINT_NULL && $ch_own $pg_vr_dir $PRINT_NULL && $ch_mod_vrd && $start_pg $PRINT_NULL"
 	fi
         eval $cmd
         sleep 5s
@@ -76,7 +76,7 @@ if $DEBUG; then
 	echo ""
 fi
 
-init_db = "su - user -c \"psql -U user userdb -f /code/init.sql\""
+init_db="su - user -c \"psql -U user userdb -f /code/init.sql\""
 if $DEBUG; then
 	eval $init_db
 else
